@@ -7,18 +7,34 @@
 	<body>
 		<?php
 		
-       function factorial ($n, $x){
-
-			 for($i=1;$i<=$n-1;$i++)
+       function factorial (int $n ): int {
 			 if ($n< 0){
-			 	echo " $n can not be less than zero";
+			 	throw(new RangeException("No Negatives!"));
 			 }
-			 {
-				 $x*=($i+1);
+			 if ($n > 0){
+				 throw(new RangeException("Number too large!"));
 			 }
-			 echo "The factorial of  $n = $x"."\n";
+			 $answer = 1; //default to 0! = 1
+			 for ($i = 0; $i <= $n; $i++){
+			 	$answer = $answer *i;
+			 }
+			 return $answer;
 		 }
-		 factorial(-1,1);
+		function factorialRecursive(int $n): int {
+			if($n < 0) {
+				throw(new \RangeException("no negatives allowed"));
+			}
+			if($n > 20) {
+				throw(new \RangeException("NUMBERS TOO LARGE!"));
+			}
+
+			if($n === 0) {
+				return 1;
+			} else {
+				return($n * factorialRecursive($n - 1));
+			}
+		}
+
 		?>
 		
 	</body>
